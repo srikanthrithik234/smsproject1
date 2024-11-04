@@ -1,0 +1,28 @@
+{% extends 'Navbar/ProjectNavbar.html' %}
+{% load static %}
+<html>
+<head>
+    <title>Simple Calculator</title>
+</head>
+<body>
+{% block body %}
+    <form method="post" action='#' >
+        {% csrf_token %}
+        <input type="number" name="num1" step="any" placeholder="Enter first number" required>
+        <input type="number" name="num2" step="any" placeholder="Enter second number" required>
+        <select name="operation" required>
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select>
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result is not None %}
+    <h2>Result: {{ result }}</h2>
+    {% endif %}
+
+{% endblock %}
+</body>
+</html>

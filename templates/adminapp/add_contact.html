@@ -1,0 +1,114 @@
+{% extends 'Navbar/ProjectNavbar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact</title>
+</head>
+<body>
+{% block body %}
+  <style>
+    body {
+        font-family: 'Helvetica Neue', sans-serif;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .form-container {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+    }
+    label {
+        font-weight: bold;
+        color: #333;
+        margin-top: 10px;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+    input[type="text"], input[type="email"], textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+        border-color: #80bdff;
+        outline: none;
+    }
+    textarea {
+        resize: vertical;
+    }
+    button {
+        padding: 10px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: block;
+        width: 100%;
+    }
+    .save-button {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+    .save-button:hover {
+        background-color: #0056b3;
+    }
+    .back-button {
+        background-color: #6c757d;
+        color: #ffffff;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .back-button:hover {
+        background-color: #5a6268;
+    }
+    .back-button a {
+        color: white;
+        text-decoration: none;
+        display: block;
+    }
+  </style>
+    <div class="form-container">
+        <h1>Add Contact</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="phone">Phone number:</label>
+            <input type="text" id="phone" name="phone_number">
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4"></textarea>
+
+            <button type="submit" class="save-button">Save Contact</button>
+        </form>
+        <button class="back-button"><a href="{% url 'contact_list' %}">Back to Contact List</a></button>
+    </div>
+{% endblock %}
+</body>
+</html>

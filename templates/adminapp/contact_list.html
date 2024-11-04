@@ -1,0 +1,42 @@
+{% extends 'Navbar/ProjectNavbar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Contact List</h1>
+
+        <!-- Search Form -->
+        <form method="GET" action="{% url 'contact_list' %}" class="form-inline mb-4">
+            <input type="text" name="q" placeholder="Search by name or email" value="{{ request.GET.q }}" class="form-control mr-2">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <!-- Add Contact Button -->
+        <a href="{% url 'add_contact' %}" class="btn btn-success mb-4">Add New Contact</a>
+
+        <!-- Contact List -->
+        <div class="list-group">
+            {% for contact in contacts %}
+                <div class="list-group-item">
+                    <h5 class="mb-1"><strong>{{ contact.name }}</strong></h5>
+                    <p class="mb-1">Email: {{ contact.email }}</p>
+                    <p class="mb-1">Phone: {{ contact.phone_number }}</p>
+                    <p class="mb-1">Address: {{ contact.address }}</p>
+                    <a href="{% url 'delete_contact' contact.id %}" class="btn btn-danger btn-sm mr-2">Delete</a>
+                    <a href="#" class="btn btn-info btn-sm">Email</a>
+                </div>
+            {% empty %}
+                <p>No contacts found.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>
